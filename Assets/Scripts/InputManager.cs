@@ -24,6 +24,7 @@ public class InputManager : MonoBehaviour
     {
         motor = gameObject.GetComponent<TankMotor>();
         data = gameObject.GetComponent<TankData>();
+        GameManager.Instance.playerData = data;
     }
 
     // Update is called once per frame

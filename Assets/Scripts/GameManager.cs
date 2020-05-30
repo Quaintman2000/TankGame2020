@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    public GameManager instance;
     public GameObject playerPrefab;
-    public int demoNumber = 13;
+    public TankData playerData;
+    public List<TankData> enemyDatas = new List<TankData>();
+
+
 }

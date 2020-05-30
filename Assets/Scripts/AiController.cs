@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class AiController : MonoBehaviour
         motor = gameObject.GetComponent<TankMotor>();
         data = gameObject.GetComponent<TankData>();
         lastEventTime = Time.time;
+        GameManager.Instance.enemyDatas.Add(data);
     }
 
     // Update is called once per frame
