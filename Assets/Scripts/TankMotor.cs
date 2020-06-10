@@ -46,6 +46,28 @@ public class TankMotor : MonoBehaviour
         //pass our rotation vector into transform.rotate
         transform.Rotate(rotateVector, Space.Self);
     }
+    /// <summary>
+    /// Rotate toward a target
+    /// </summary>
+    /// <param name="target">target to rotate towards</param>
+    /// <param name="speed">rotation speed</param>
+    /// <returns>Returns true if rotated to the target, false if not.</returns>
+    public bool RotateTowards(Vector3 target, float speed)
+    {
+        //todo: write this function
+        //find target
+        Vector3 vectorToTarget = target - this.transform.position;
+        //find the rotation needed
+        Quaternion targetRotation = Quaternion.LookRotation(vectorToTarget);
+
+        if (targetRotation == this.transform.rotation)
+        {
+            return false;
+        }
+
+        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, speed);
+        return true;
+    }
     public void Shoot()
     {
         //Spawns the bullet at the firepoint position and rotation and plays the shoot sound
