@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class AiController : MonoBehaviour
 {
+    public enum AIState
+    {
+        Patrol, WaitForBackup,Advance,Attack,flee
+    };
+    public enum AIPersonality { Aggressive, Cautious};
+    public AIState currentAIState;
+    public AIPersonality personality;
     public Transform[] waypoints;
     public float closeEnough = 1.0f;
     public int currentWaypoint = 0;
@@ -40,6 +47,11 @@ public class AiController : MonoBehaviour
             Debug.Log("It's me!");
             lastEventTime = Time.time;
         }
+        Patrol();
+    }
+
+    private void Patrol()
+    {
         //rotate towards waypoint
         if (motor.RotateTowards(waypoints[currentWaypoint].position, data.rotateSpeed * Time.deltaTime))
         {
@@ -59,7 +71,7 @@ public class AiController : MonoBehaviour
             {
                 PingPongLoop();
             }
-            else if(loopType == LoopType.Loop)
+            else if (loopType == LoopType.Loop)
             {
                 LoopLoop();
             }
