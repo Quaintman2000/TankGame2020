@@ -7,18 +7,38 @@ public class AiController : MonoBehaviour
 {
     public enum AIState
     {
-        Patrol, WaitForBackup,Advance,Attack,flee
+        Patrol, WaitForBackup, Advance, Attack, flee
     };
-    public enum AIPersonality { Aggressive, Cautious};
+    public enum AIPersonality { Aggressive, Cautious };
     public AIState currentAIState;
     public AIPersonality personality;
     public Transform[] waypoints;
     public float closeEnough = 1.0f;
     public int currentWaypoint = 0;
 
+    public bool CanMove(float speed)
+    {
+        //check if the ai can move forward in "speed" distance 
+        //send a raycast to see if we cant move
+        RaycastHit hit;
+        if(Physics.Raycast (tf.position, tf.forward, out hit, speed))
+        {
+            //and if it is anything BUT the player
+            if(!hit.collider.CompareTag("Player"))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    private int avoidStage = 0;
+    public float avoidTime = 2.0f;
+    private float exitTime;
+
     private TankData data;
     private TankMotor motor;
     private Transform tf;
+    public Transform targetTransform;
 
     public enum LoopType { Stop, Loop, PingPong };
     public LoopType loopType;
@@ -40,6 +60,79 @@ public class AiController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //handle Ai States
+        if (currentAIState == AIState.Patrol)
+        {
+            Patrol();
+        }
+        else if (currentAIState == AIState.Advance)
+        {
+            if (avoidStage != 0)
+            {
+                DoAvoidance();
+            }
+            else
+            {
+                DoChase();
+            }
+        }
+    }
+
+    void DoAvoidance()
+    {
+        if(avoidStage == 1)
+        {
+            //turn left
+            motor.Rotate(-data.rotateSpeed);
+
+            //if we can move forward
+            if(CanMove(data.moveSpeed))
+            {
+                avoidStage = 2;
+
+                //set the avoidance timer
+                exitTime = avoidTime;
+            }
+        }
+        else if(avoidStage ==2)
+        {
+            //check if we can move forward then keep moving
+            if(CanMove(data.moveSpeed))
+            {
+                //count down the avoid time
+                exitTime -= Time.deltaTime;
+                motor.Move(data.moveSpeed);
+
+                //if we ran out of time, try chasing again
+                if(exitTime <= 0)
+                {
+                    avoidStage = 0;
+                }
+            }
+            else
+            {
+                //if we cant, go back to stage one.
+                avoidStage = 1;
+            }
+        }
+    }
+    void DoChase()
+    {
+        motor.RotateTowards(targetTransform.position, data.rotateSpeed);
+        //check to see if we can move in that direction
+        if(CanMove(data.moveSpeed))
+        {
+            //move in that direction
+            motor.Move(data.moveSpeed);
+        }
+        else
+        {
+            //start avoiding
+            avoidStage = 1;
+        }
+    }
+    private void IntervalShoot()
+    {
         //Shoot at an interval
         if (Time.time >= lastEventTime + timerDelay)
         {
@@ -47,7 +140,6 @@ public class AiController : MonoBehaviour
             Debug.Log("It's me!");
             lastEventTime = Time.time;
         }
-        Patrol();
     }
 
     private void Patrol()
