@@ -545,6 +545,16 @@ PrefabInstance:
       propertyPath: fleeTime
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -4231707606647361313, guid: ccef5f62860653547bbb8a19f72f3a22,
+        type: 3}
+      propertyPath: defualtInvestigateTimer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4231707606647361313, guid: ccef5f62860653547bbb8a19f72f3a22,
+        type: 3}
+      propertyPath: loopType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6951646392130503922, guid: ccef5f62860653547bbb8a19f72f3a22,
         type: 3}
       propertyPath: target
@@ -1189,7 +1199,7 @@ PrefabInstance:
     - target: {fileID: 7475427074645982955, guid: ccef5f62860653547bbb8a19f72f3a22,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccef5f62860653547bbb8a19f72f3a22, type: 3}
@@ -1622,7 +1632,7 @@ PrefabInstance:
     - target: {fileID: 7475427074645982955, guid: ccef5f62860653547bbb8a19f72f3a22,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccef5f62860653547bbb8a19f72f3a22, type: 3}
@@ -1830,7 +1840,7 @@ PrefabInstance:
     - target: {fileID: 7475427074645982955, guid: ccef5f62860653547bbb8a19f72f3a22,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccef5f62860653547bbb8a19f72f3a22, type: 3}
@@ -2143,7 +2153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6871b6fc5fb812e49872c32a71882309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hearingDistance: 10
+  hearingDistance: 5
 --- !u!114 &1477938426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2947,6 +2957,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450613863201511207, guid: da3ae72f75fcd3744b3f89fbc44ffb4b,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da3ae72f75fcd3744b3f89fbc44ffb4b, type: 3}

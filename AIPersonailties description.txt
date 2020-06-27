@@ -1,0 +1,8 @@
+*Aggressive AI
+	*This AI actively chases that player and tries to kill him until either the player or the AI is destroyed.
+*Cowardly AI
+	*This AI, similar to the aggressive AI, will attack the player onsite only if the player isn't looking at it. It will run away if spotted.
+*Sniper AI
+	*This AI will purposely find a position far away from the player, but still within sight, to shoot at the player from long ranges. Once in position, it will not move until it no longer see the player.
+*Ambusher AI
+	*This AI will try to intercept the player based on the direction in which the player is moving and attack them.
