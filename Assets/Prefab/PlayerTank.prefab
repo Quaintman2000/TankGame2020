@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 5307086188310118198}
   - component: {fileID: 6550052067406061968}
   - component: {fileID: -2527875436399421511}
+  - component: {fileID: 6550052067704679901}
   m_Layer: 0
   m_Name: PlayerTank
   m_TagString: Player
@@ -324,6 +325,7 @@ MonoBehaviour:
   rotateSpeed: 90
   score: 0
   pointsForKill: 10
+  fireRate: 0
 --- !u!114 &5307086188310118198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,8 +367,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8256db24383849245931860a1ea3d818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: 0
+  input: 1
   timerdelay: 1
+--- !u!114 &6550052067704679901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4420416040735556808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cbef2addf6d10b409ac938b51e07d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUps: []
 --- !u!1 &4420416040735556810
 GameObject:
   m_ObjectHideFlags: 0

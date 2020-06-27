@@ -73,6 +73,7 @@ public class TankMotor : MonoBehaviour
         //Spawns the bullet at the firepoint position and rotation and plays the shoot sound
         Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation);
         AudioSource.PlayClipAtPoint(shootSound, firePoint.transform.position);
+        gameObject.SendMessage("AddNoise", 5, SendMessageOptions.DontRequireReceiver);
     }
 
     public void TakeDamage(float damage)

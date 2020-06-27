@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ce480fe58b98ea145a12bf4b69eedc53, type: 2}
+  - {fileID: 2100000, guid: c5e7378ed838301488318e5644d458e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -278,7 +278,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd6d9bac0c71195479af54e1db0d691e, type: 2}
+  - {fileID: 2100000, guid: c5e7378ed838301488318e5644d458e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 1240079283}
   - component: {fileID: -4231707606647361313}
   - component: {fileID: 6951646392130503922}
+  - component: {fileID: 1228939499}
   m_Layer: 0
   m_Name: EnemyTank
   m_TagString: Enemy
@@ -373,6 +374,7 @@ MonoBehaviour:
   rotateSpeed: 90
   score: 0
   pointsForKill: 10
+  fireRate: 0
 --- !u!114 &1387385091029468437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,15 +411,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7475427074645982955}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 200d7d090282f29488005a6d64581317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
-  closeEnough: 1
+  aggressiveColor: {fileID: 2100000, guid: c5e7378ed838301488318e5644d458e6, type: 2}
+  cowardlyColor: {fileID: 2100000, guid: 84ea461852d8be64eaadf4eeab018e1f, type: 2}
+  sniperColor: {fileID: 2100000, guid: c19e109fd0ef91040b8ea42e9b5c19aa, type: 2}
+  ambusherColor: {fileID: 2100000, guid: 4da63571d1cf5004ba085693910914a6, type: 2}
+  currentAIState: 2
+  personality: 0
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  closeEnough: 3
   currentWaypoint: 0
-  loopType: 0
+  avoidStage: 0
+  avoidTime: 1
+  targetTransform: {fileID: 0}
+  loopType: 1
   timerDelay: 1
 --- !u!114 &6951646392130503922
 MonoBehaviour:
@@ -426,13 +440,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7475427074645982955}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59b42e4692f9ed84bb42ded4325f5167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  attackMode: 0
+  attackMode: 1
+--- !u!114 &1228939499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7475427074645982955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cbef2addf6d10b409ac938b51e07d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUps: []
 --- !u!1 &7475427074645982957
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +549,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ce480fe58b98ea145a12bf4b69eedc53, type: 2}
+  - {fileID: 2100000, guid: c5e7378ed838301488318e5644d458e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

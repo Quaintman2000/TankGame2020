@@ -124,6 +124,8 @@ public class InputManager : MonoBehaviour
                         motor.Shoot();
                         //reset the timer
                         coolDownTime = timerdelay;
+                        //send message to make"noise"
+                        gameObject.SendMessage("AddNoise", 10,SendMessageOptions.DontRequireReceiver);
                     }
                 }
                 break;

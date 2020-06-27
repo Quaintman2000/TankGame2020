@@ -11,4 +11,5 @@ public class TankData : MonoBehaviour
     public float rotateSpeed = 30.0f;
     public float score = 0;
     public float pointsForKill = 10;
+    public float fireRate;
 }
