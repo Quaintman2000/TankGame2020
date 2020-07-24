@@ -9,6 +9,7 @@ public class PowerUP
     public float healthMod;
     public float maxHealthMod;
     public float fireRateMod;
+    public int scoreMod;
 
     public float duration;
     public bool isPernament;
@@ -19,6 +20,7 @@ public class PowerUP
         target.health += healthMod;
         target.maxHealth += maxHealthMod;
         target.fireRate += fireRateMod;
+        target.score += scoreMod;
     }
     public void OnDeactivate(TankData target)
     {

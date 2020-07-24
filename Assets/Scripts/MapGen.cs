@@ -124,7 +124,9 @@ public class MapGen : MonoBehaviour
                 break;
         }
         GenerateGrid();
+        //spawn player
         
+        // spawn enemy
     }
     // Update is called once per frame
     void Update()

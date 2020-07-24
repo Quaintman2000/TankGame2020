@@ -81,7 +81,7 @@ public class TankMotor : MonoBehaviour
         //reduce the health based on bullet damage
         data.health -= damage;
     }
-    public void Die()
+    public virtual void Die()
     {
         Destroy(this.gameObject);
     }

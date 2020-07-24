@@ -74,14 +74,17 @@ public class AiController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //grab components
         motor = gameObject.GetComponent<TankMotor>();
         data = gameObject.GetComponent<TankData>();
         tf = gameObject.GetComponent<Transform>();
         vision = gameObject.GetComponent<Vision>();
         hearing = gameObject.GetComponent<Hearing>();
         lastEventTime = Time.time;
+        //add to the game manager
         GameManager.Instance.enemyDatas.Add(data);
-
+        
+        //grab all the visual components
         visualsObject = this.gameObject.transform.GetChild(0);
         body = visualsObject.GetChild(0);
         cannon = visualsObject.GetChild(1);
@@ -98,7 +101,8 @@ public class AiController : MonoBehaviour
         {
             currentAIState = AIState.Wait;
         }
-        
+
+        targetTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -165,7 +169,7 @@ public class AiController : MonoBehaviour
                 
                 //check for transitions
                 //if ai can see the player
-                if (vision.CanSee(targetTransform.gameObject) && currentAIState == AIState.Wait)
+                if (vision.CanSee(targetTransform.gameObject) == true && currentAIState == AIState.Wait)
                 {
                     //start the timer
                     fleeTimer = fleeTime;
@@ -485,4 +489,6 @@ public class AiController : MonoBehaviour
             currentWaypoint++;
         }
     }
+
+   
 }
