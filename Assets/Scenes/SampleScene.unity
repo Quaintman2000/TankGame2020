@@ -328,6 +328,7 @@ MonoBehaviour:
   playerSpawns: []
   enemySpawns: []
   powerUps: []
+  pickupSpawners: []
   scoreDatas:
   - score: 6
     name: chad
@@ -1647,6 +1648,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rows: 5
   columns: 5
+  roomWidth: 50
+  roomHeight: 50
   gridPrefabs:
   - {fileID: 5728736598073932580, guid: 9dabf25fee1202c4dba757ed996c4d70, type: 3}
   - {fileID: 7973724857461710132, guid: f4da0e058e46c274d8aaa76c10a63c24, type: 3}
@@ -1682,11 +1685,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rows: 3
   columns: 3
+  roomWidth: 50
+  roomHeight: 50
   gridPrefabs:
   - {fileID: 5728736598073932580, guid: 9dabf25fee1202c4dba757ed996c4d70, type: 3}
   - {fileID: 7973724857461710132, guid: f4da0e058e46c274d8aaa76c10a63c24, type: 3}
-  mapSeed: 2203
-  mapType: 1
+  - {fileID: 3719315395323814058, guid: 89db58bf6d74dc949bbe26649ee2be68, type: 3}
+  mapSeed: 5432
+  mapType: 0
 --- !u!1 &1789603774
 GameObject:
   m_ObjectHideFlags: 0

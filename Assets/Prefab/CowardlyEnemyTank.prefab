@@ -9,6 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4231707606647361313, guid: ccef5f62860653547bbb8a19f72f3a22,
         type: 3}
+      propertyPath: waypoints.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4231707606647361313, guid: ccef5f62860653547bbb8a19f72f3a22,
+        type: 3}
       propertyPath: personality
       value: 1
       objectReference: {fileID: 0}

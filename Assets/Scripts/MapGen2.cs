@@ -7,8 +7,8 @@ public class MapGen2 : MonoBehaviour
 {
     public int rows;
     public int columns;
-    private float roomWidth = 50f;
-    private float roomHeight = 50f;
+    public float roomWidth = 50f;
+    public float roomHeight = 50f;
     public GameObject[] gridPrefabs;
     private Room[,] grid;
     public int mapSeed;

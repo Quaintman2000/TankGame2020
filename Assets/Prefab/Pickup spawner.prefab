@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1882373563243665732}
+  - component: {fileID: 7894151210001644834}
   m_Layer: 0
   m_Name: Pickup spawner
   m_TagString: Untagged
@@ -30,3 +31,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7894151210001644834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882373563243665735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b270594ddc347584eab1c03f6e1197f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupPrefab: {fileID: 0}
+  pickupPrefabs:
+  - {fileID: 6305480156312696577, guid: be85cb373e4cb04479dde2bb89da5a85, type: 3}
+  - {fileID: 4834598838354724102, guid: 4e0a74a1e9874e94c83870447e577336, type: 3}
+  - {fileID: 8554764379096713992, guid: 4aa3221193daa6346a26c615719444b5, type: 3}
+  currentPickup: {fileID: 0}
+  spawnDelay: 3

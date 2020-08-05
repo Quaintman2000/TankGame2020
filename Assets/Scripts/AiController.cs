@@ -22,7 +22,7 @@ public class AiController : MonoBehaviour
     public AIState previousAIState;
     public AIPersonality personality;
     [Header("Movement")]
-    public Transform[] waypoints;
+    public List<Transform> waypoints= new List<Transform>();
     public float closeEnough = 1.0f;
     public int currentWaypoint = 0;
     public float defualtInvestigateTimer;
@@ -439,7 +439,7 @@ public class AiController : MonoBehaviour
     /// </summary>
     private void LoopLoop()
     {
-        if (currentWaypoint < waypoints.Length - 1)
+        if (currentWaypoint < waypoints.Count - 1)
         {
             currentWaypoint++;
         }
@@ -455,7 +455,7 @@ public class AiController : MonoBehaviour
     {
         if (isPatrolFoward)
         {
-            if (currentWaypoint < waypoints.Length - 1)
+            if (currentWaypoint < waypoints.Count - 1)
             {
                 currentWaypoint++;
             }
@@ -484,7 +484,7 @@ public class AiController : MonoBehaviour
     /// </summary>
     private void StopLoop()
     {
-        if (currentWaypoint < waypoints.Length - 1)
+        if (currentWaypoint < waypoints.Count - 1)
         {
             currentWaypoint++;
         }

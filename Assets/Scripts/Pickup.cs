@@ -10,7 +10,8 @@ public class Pickup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //add this to the game manager
+        GameManager.Instance.powerUps.Add(this);
     }
 
     // Update is called once per frame
@@ -34,5 +35,11 @@ public class Pickup : MonoBehaviour
 
             Destroy(this.gameObject);
         }
+    }
+    //when picked up
+    private void OnDestroy()
+    {
+        //remove from the game manager
+        GameManager.Instance.powerUps.Remove(this);
     }
 }

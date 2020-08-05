@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    List<GameObject> waypoints = new List<GameObject>();
+    public GameObject[] waypoints;
     private GameObject spawnedEntity;
-    private int count = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +15,11 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy(GameObject enemy)
     {
-        count = 0;
+       
         spawnedEntity=Instantiate(enemy, this.gameObject.transform.position, this.gameObject.transform.rotation);
-        for(int i =0; i<waypoints.Count; i++)
+        for(int i =0; i<waypoints.Length; i++)
         {
-            spawnedEntity.GetComponent<AiController>().waypoints[i] = waypoints[i].transform;
+            spawnedEntity.GetComponent<AiController>().waypoints.Add(waypoints[i].transform);
         }
     }
 }

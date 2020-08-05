@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     public List<PlayerSpawner> playerSpawns = new List<PlayerSpawner>();
     public List<EnemySpawner> enemySpawns = new List<EnemySpawner>();
     public List<Pickup> powerUps = new List<Pickup>();
+    public List<PickupSpawner> pickupSpawners = new List<PickupSpawner>();
     public List<ScoreData> scoreDatas = new List<ScoreData>();
 
     protected override void Awake()

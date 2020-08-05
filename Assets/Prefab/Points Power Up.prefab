@@ -77,5 +77,10 @@ PrefabInstance:
       propertyPath: powerup.scoreMod
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8787272468552629993, guid: 815e342ab3ef58948aaf0e0f57b43bf9,
+        type: 3}
+      propertyPath: powerup.isPernament
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 815e342ab3ef58948aaf0e0f57b43bf9, type: 3}

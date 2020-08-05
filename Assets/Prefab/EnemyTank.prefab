@@ -424,10 +424,7 @@ MonoBehaviour:
   currentAIState: 2
   previousAIState: 0
   personality: 0
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  waypoints: []
   closeEnough: 3
   currentWaypoint: 0
   defualtInvestigateTimer: 0
