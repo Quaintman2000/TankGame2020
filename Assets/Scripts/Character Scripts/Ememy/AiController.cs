@@ -390,9 +390,9 @@ public class AiController : MonoBehaviour
         }
         else if (currentAIState == AIState.Investigate)
         {
-            
+
             //rotate towards the target it "hears"
-            motor.RotateTowards(currentTarget.position, data.rotateSpeed*Time.deltaTime);
+            motor.RotateTowards(currentTarget.position, data.rotateSpeed * Time.deltaTime);
 
         }
         else if (currentAIState == AIState.Attack)
