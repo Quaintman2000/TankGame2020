@@ -12,4 +12,5 @@ public class TankData : MonoBehaviour
     public int pointsForKill = 10;
     public float fireRate;
     public AudioClip deathSound;
+    public float firePower = 100;
 }

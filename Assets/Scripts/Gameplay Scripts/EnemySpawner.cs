@@ -15,11 +15,34 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy(GameObject enemy)
     {
-       
+       //spawn the enemy
         spawnedEntity=Instantiate(enemy, this.gameObject.transform.position, this.gameObject.transform.rotation);
-        for(int i =0; i<waypoints.Length; i++)
+
+        //if the enemy is the sniper or aggressive
+        if (spawnedEntity.GetComponent<SniperFSMController>() != null)
         {
-            spawnedEntity.GetComponent<AiController>().waypoints.Add(waypoints[i].transform);
+            for (int i = 0; i < waypoints.Length; i++)
+            {
+                spawnedEntity.GetComponent<SniperFSMController>().waypoints.Add(waypoints[i].transform);
+            }
+        }
+        else if(spawnedEntity.GetComponent<CowardlyFSMController>() != null)
+        {
+            for (int i = 0; i < waypoints.Length; i++)
+            {
+                spawnedEntity.GetComponent<CowardlyFSMController>().waypoints.Add(waypoints[i].transform);
+            }
+        }
+        else if(spawnedEntity.GetComponent<NeutralFSMController>() != null)
+        {
+            for (int i = 0; i < waypoints.Length; i++)
+            {
+                spawnedEntity.GetComponent<NeutralFSMController>().waypoints.Add(waypoints[i].transform);
+            }
+        }
+        else
+        {
+            Debug.LogError(this.gameObject.name + " Cannot input waypoints into spawned enity.");
         }
     }
 }

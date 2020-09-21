@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2130643355129279584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53350087646209813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f77efe42769c7840b4b82cc5fa88041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sniperColor: {fileID: 0}
+  currentAIState: 0
+  previousAIState: 0
+  waypoints: []
+  closeEnough: 1
+  currentWaypoint: 0
+  defualtInvestigateTimer: 0
+  stateEnterTime: 0
+  avoidStage: 0
+  avoidTime: 2
+  playerOneTransform: {fileID: 0}
+  playerTwoTransform: {fileID: 0}
+  loopType: 0
+  timerDelay: 1
+  firingRange: 10
 --- !u!1001 &7422922632720226814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11,6 +38,11 @@ PrefabInstance:
         type: 3}
       propertyPath: currentAIState
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243571602035387652, guid: ccef5f62860653547bbb8a19f72f3a22,
+        type: 3}
+      propertyPath: fireRate
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7475427074645942987, guid: ccef5f62860653547bbb8a19f72f3a22,
         type: 3}
@@ -74,3 +106,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccef5f62860653547bbb8a19f72f3a22, type: 3}
+--- !u!1 &53350087646209813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7475427074645982955, guid: ccef5f62860653547bbb8a19f72f3a22,
+    type: 3}
+  m_PrefabInstance: {fileID: 7422922632720226814}
+  m_PrefabAsset: {fileID: 0}
