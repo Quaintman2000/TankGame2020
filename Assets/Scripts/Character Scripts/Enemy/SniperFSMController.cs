@@ -78,15 +78,7 @@ public class SniperFSMController : MonoBehaviour
         lastEventTime = Time.time;
         //add to the game manager
         GameManager.Instance.enemyDatas.Add(data);
-
-        //grab all the visual components
-        visualsObject = this.gameObject.transform.GetChild(0);
-        body = visualsObject.GetChild(0);
-        cannon = visualsObject.GetChild(1);
-        shell = body.GetChild(0).gameObject;
-        bodyBase = cannon.GetChild(0).gameObject;
-        barrel = cannon.GetChild(1).gameObject;
-
+              
         //start on patrol state
         currentAIState = AIState.Patrol;
     }
@@ -95,33 +87,33 @@ public class SniperFSMController : MonoBehaviour
     void Update()
     {
         //FSM
-        //if there is a player 
-        if (GameManager.Instance.playerOneData != null || GameManager.Instance.playerTwoData != null)
+        //if there is a player 1
+        FSMPlayer1();
+
+        //handles AI states
+        AIStateHandler();
+    }
+
+    private void FSMPlayer1()
+    {
+        if (GameManager.Instance.playerOneData != null)
         {
             //if theres a player one
             if (GameManager.Instance.playerOneData != null)
             {
                 playerOneTransform = GameManager.Instance.playerOneData.transform;
             }
-            //if theres a player two
-            if (GameManager.Instance.playerTwoData != null)
-            {
-                playerTwoTransform = GameManager.Instance.playerTwoData.transform;
-            }
+           
 
             //check to see if you can see the player
-            if (vision.CanSee(playerOneTransform.gameObject) || vision.CanSee(playerTwoTransform.gameObject))
+            if (vision.CanSee(playerOneTransform.gameObject))
             {
                 //if the player being seen is player 1
                 if (vision.CanSee(playerOneTransform.gameObject))
                 {
                     currentTarget = playerOneTransform;
                 }
-                //if not, then it's player two
-                else
-                {
-                    currentTarget = playerTwoTransform;
-                }
+               
 
                 //enter charge state
                 ChangeState(AIState.Charge);
@@ -134,18 +126,14 @@ public class SniperFSMController : MonoBehaviour
                 }
 
             }
-            else if (hearing.CanHear(playerOneTransform.gameObject) || hearing.CanHear(playerTwoTransform.gameObject))
+            else if (hearing.CanHear(playerOneTransform.gameObject))
             {
                 //if the player being heard is player 1
                 if (hearing.CanHear(playerOneTransform.gameObject))
                 {
                     currentTarget = playerOneTransform;
                 }
-                //if not, then it's player two
-                else
-                {
-                    currentTarget = playerTwoTransform;
-                }
+               
 
                 //enter investigate state;
                 currentAIState = AIState.Investigate;
@@ -169,9 +157,66 @@ public class SniperFSMController : MonoBehaviour
             //continue patroling
             ChangeState(AIState.Patrol);
         }
+    }
+    public void FSMPlayer2()
+    {
+        if ( GameManager.Instance.playerTwoData != null)
+        {
+           
+            //if theres a player two
+            if (GameManager.Instance.playerTwoData != null)
+            {
+                playerTwoTransform = GameManager.Instance.playerTwoData.transform;
+            }
 
-        //handles AI states
-        AIStateHandler();
+            //check to see if you can see the player
+            if ( vision.CanSee(playerTwoTransform.gameObject))
+            {
+               
+                //if not, then it's player two
+               
+                    currentTarget = playerTwoTransform;
+                
+
+                //enter charge state
+                ChangeState(AIState.Charge);
+
+                //once close enough
+                if (Vector3.Distance(this.transform.position, currentTarget.position) < firingRange)
+                {
+                    //go into shooting state
+                    ChangeState(AIState.Shoot);
+                }
+
+            }
+            else if ( hearing.CanHear(playerTwoTransform.gameObject))
+            {
+                
+                    currentTarget = playerTwoTransform;
+                
+
+                //enter investigate state;
+                currentAIState = AIState.Investigate;
+            }
+            //if not
+            else
+            {
+                //clear target
+                currentTarget = null;
+                //continue patroling
+                ChangeState(AIState.Patrol);
+            }
+        }
+        //if not
+        else
+        {
+            //set targets to null
+            playerOneTransform = null;
+            playerTwoTransform = null;
+
+            //continue patroling
+            ChangeState(AIState.Patrol);
+        }
     }
 
     private void AIStateHandler()
@@ -209,6 +254,9 @@ public class SniperFSMController : MonoBehaviour
 
                 //and shoot
                 IntervalShoot();
+                break;
+            default:
+                Debug.LogError("Error: " + this.gameObject.name + " has an invalid AIState set");
                 break;
 
         }

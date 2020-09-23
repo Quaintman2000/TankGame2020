@@ -79,14 +79,6 @@ public class CowardlyFSMController : MonoBehaviour
         //add to the game manager
         GameManager.Instance.enemyDatas.Add(data);
 
-        //grab all the visual components
-        visualsObject = this.gameObject.transform.GetChild(0);
-        body = visualsObject.GetChild(0);
-        cannon = visualsObject.GetChild(1);
-        shell = body.GetChild(0).gameObject;
-        bodyBase = cannon.GetChild(0).gameObject;
-        barrel = cannon.GetChild(1).gameObject;
-
         //start on patrol state
         currentAIState = AIState.Patrol;
     }
@@ -96,49 +88,24 @@ public class CowardlyFSMController : MonoBehaviour
     {
         //cowardly FSM
         //if there is a player 
-        if (GameManager.Instance.playerOneData != null || GameManager.Instance.playerTwoData != null)
+        if (GameManager.Instance.playerOneData != null )
         {
-            //if theres a player one
-            if (GameManager.Instance.playerOneData != null)
-            {
-                playerOneTransform = GameManager.Instance.playerOneData.transform;
-            }
-            //if theres a player two
-            if (GameManager.Instance.playerTwoData != null)
-            {
-                playerTwoTransform = GameManager.Instance.playerTwoData.transform;
-            }
-
+            playerOneTransform = GameManager.Instance.playerOneData.transform;
             //check to see if you can see the player
-            if (vision.CanSee(playerOneTransform.gameObject) || vision.CanSee(playerTwoTransform.gameObject))
+            if (vision.CanSee(playerOneTransform.gameObject) )
             {
-                //if the player being seen is player 1
-                if (vision.CanSee(playerOneTransform.gameObject))
-                {
+               
                     currentTarget = playerOneTransform;
-                }
-                //if not, then it's player two
-                else
-                {
-                    currentTarget = playerTwoTransform;
-                }
-            }
-        }
-        else if (hearing.CanHear(playerOneTransform.gameObject) || hearing.CanHear(playerTwoTransform.gameObject))
-        {
-            //if the player being heard is player 1
-            if (hearing.CanHear(playerOneTransform.gameObject))
-            {
-                currentTarget = playerOneTransform;
-            }
-            //if not, then it's player two
-            else
-            {
-                currentTarget = playerTwoTransform;
+                
+               
             }
 
-            //enter investigate state;
-            currentAIState = AIState.Investigate;
+            else if (hearing.CanHear(playerOneTransform.gameObject))
+            {
+               currentTarget = playerOneTransform;
+               //enter investigate state;
+                currentAIState = AIState.Investigate;
+            }
         }
         //if not
         else

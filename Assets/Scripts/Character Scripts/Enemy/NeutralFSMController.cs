@@ -78,15 +78,7 @@ public class NeutralFSMController : MonoBehaviour
         lastEventTime = Time.time;
         //add to the game manager
         GameManager.Instance.enemyDatas.Add(data);
-
-        //grab all the visual components
-        visualsObject = this.gameObject.transform.GetChild(0);
-        body = visualsObject.GetChild(0);
-        cannon = visualsObject.GetChild(1);
-        shell = body.GetChild(0).gameObject;
-        bodyBase = cannon.GetChild(0).gameObject;
-        barrel = cannon.GetChild(1).gameObject;
-
+    
         //start on patrol state
         currentAIState = AIState.Patrol;
     }

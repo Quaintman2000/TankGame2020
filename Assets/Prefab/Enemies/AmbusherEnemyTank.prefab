@@ -24,7 +24,7 @@ MonoBehaviour:
   avoidTime: 2
   playerOneTransform: {fileID: 0}
   playerTwoTransform: {fileID: 0}
-  loopType: 0
+  loopType: 1
   timerDelay: 1
   firingRange: 0
 --- !u!1001 &2949741586410394563

@@ -68,8 +68,6 @@ public class GameManager : Singleton<GameManager>
         //spawn only when the game is in game running state
         if (gameState == gameplayState.gameRunning && mapGenerator != null)
         {
-
-
             
             PlayerSpawnHandler();
             EnemySpawnHandler();
@@ -115,6 +113,7 @@ public class GameManager : Singleton<GameManager>
         //if there are less than 4 enemies in the world
         if (enemyDatas.Count < 4 && enemySpawns.Count >= 1)
         {
+            
             //random spawn
             int randomSpawn = UnityEngine.Random.Range(0, enemySpawns.Count - 1);
             //random tank

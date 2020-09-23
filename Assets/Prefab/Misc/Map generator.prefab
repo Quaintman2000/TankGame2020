@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7012701389098515646}
-  - component: {fileID: 7012701389098515647}
   - component: {fileID: 7012701389098515645}
   m_Layer: 0
   m_Name: Map generator
@@ -32,29 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7012701389098515647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7012701389098515640}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6031e526224e5d54697f3904ae08dab0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rows: 5
-  columns: 5
-  roomWidth: 50
-  roomHeight: 50
-  gridPrefabs:
-  - {fileID: 5728736598073932580, guid: 9dabf25fee1202c4dba757ed996c4d70, type: 3}
-  - {fileID: 7973724857461710132, guid: f4da0e058e46c274d8aaa76c10a63c24, type: 3}
-  mapSeed: 0
-  currentRow: 0
-  currentColumn: 0
-  mapType: 1
 --- !u!114 &7012701389098515645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,8 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b473358245eda04096a7a69f6fca58b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 2
-  columns: 2
+  rows: 3
+  columns: 3
   roomWidth: 50
   roomHeight: 50
   gridPrefabs:
@@ -76,4 +52,4 @@ MonoBehaviour:
   - {fileID: 7973724857461710132, guid: f4da0e058e46c274d8aaa76c10a63c24, type: 3}
   - {fileID: 3719315395323814058, guid: 89db58bf6d74dc949bbe26649ee2be68, type: 3}
   mapSeed: 5432
-  mapType: 0
+  mapType: 1

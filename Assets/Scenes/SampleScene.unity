@@ -149,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 170024269, guid: d92fe6a1fb9623640acf8bac19180c00, type: 3}
       propertyPath: enemyTankPrefabs.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 170024269, guid: d92fe6a1fb9623640acf8bac19180c00, type: 3}
       propertyPath: scoreDatas.Array.data[4].score
@@ -176,13 +176,12 @@ PrefabInstance:
     - target: {fileID: 170024269, guid: d92fe6a1fb9623640acf8bac19180c00, type: 3}
       propertyPath: enemyTankPrefabs.Array.data[2]
       value: 
-      objectReference: {fileID: 5715519866370010408, guid: eed499ec16849c249aa89a626b1eb65d,
+      objectReference: {fileID: 7837437252360656567, guid: 0b686e829a3182d4881852b3b782045c,
         type: 3}
     - target: {fileID: 170024269, guid: d92fe6a1fb9623640acf8bac19180c00, type: 3}
       propertyPath: enemyTankPrefabs.Array.data[3]
       value: 
-      objectReference: {fileID: 7837437252360656567, guid: 0b686e829a3182d4881852b3b782045c,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 228710498, guid: d92fe6a1fb9623640acf8bac19180c00, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0

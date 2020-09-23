@@ -327,8 +327,9 @@ MonoBehaviour:
   reverseSpeed: -5
   rotateSpeed: 90
   pointsForKill: 10
-  fireRate: 0
+  fireRate: 1
   deathSound: {fileID: 8300000, guid: e4cc5eed902a1ef4cb3a76d5aa8a71f8, type: 3}
+  firePower: 500
 --- !u!114 &5307086188310118198
 MonoBehaviour:
   m_ObjectHideFlags: 0
