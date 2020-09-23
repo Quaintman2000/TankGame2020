@@ -50,6 +50,6 @@ MonoBehaviour:
   gridPrefabs:
   - {fileID: 5728736598073932580, guid: 9dabf25fee1202c4dba757ed996c4d70, type: 3}
   - {fileID: 7973724857461710132, guid: f4da0e058e46c274d8aaa76c10a63c24, type: 3}
-  - {fileID: 3719315395323814058, guid: 89db58bf6d74dc949bbe26649ee2be68, type: 3}
+  - {fileID: 5728736598073932580, guid: a13aa9d7555aa03459aed653a890dc55, type: 3}
   mapSeed: 5432
   mapType: 1

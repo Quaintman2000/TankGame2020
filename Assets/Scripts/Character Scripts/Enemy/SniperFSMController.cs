@@ -58,12 +58,7 @@ public class SniperFSMController : MonoBehaviour
     public float timerDelay = 1.0f;
     private float lastEventTime;
 
-    private Transform visualsObject;
-    private Transform body;
-    private Transform cannon;
-    private GameObject bodyBase;
-    private GameObject barrel;
-    private GameObject shell;
+   
 
     public float firingRange;
     // Start is called before the first frame update
@@ -229,20 +224,7 @@ public class SniperFSMController : MonoBehaviour
                 Patrol();
                 break;
             case AIState.Charge:
-                //rotate towards the target
-                motor.RotateTowards(currentTarget.position, data.rotateSpeed * Time.deltaTime);
-
-                //check to see if we can move in that direction
-                if (CanMove(data.moveSpeed))
-                {
-                    //move in that direction
-                    motor.Move(data.moveSpeed);
-                }
-                else
-                {
-                    //start avoiding
-                    avoidStage = 1;
-                }
+                DoAdvance();
                 break;
             case AIState.Investigate:
                 //rotate towards the target it "hears"
@@ -259,6 +241,20 @@ public class SniperFSMController : MonoBehaviour
                 Debug.LogError("Error: " + this.gameObject.name + " has an invalid AIState set");
                 break;
 
+        }
+    }
+    /// <summary>
+    /// Does event for advance state (runs towards the player)
+    /// </summary>
+    private void DoAdvance()
+    {
+        if (avoidStage != 0)
+        {
+            DoAvoidance();
+        }
+        else
+        {
+            DoChase(currentTarget);
         }
     }
 
@@ -287,7 +283,7 @@ public class SniperFSMController : MonoBehaviour
         {
             motor.Move(data.moveSpeed);
         }
-        if (Vector3.SqrMagnitude(waypoints[currentWaypoint].position - tf.position) < (closeEnough * closeEnough))
+        if (Vector3.SqrMagnitude(waypoints[currentWaypoint].position - tf.position) < (closeEnough ))
         {
             if (loopType == LoopType.Stop)
             {
@@ -411,6 +407,24 @@ public class SniperFSMController : MonoBehaviour
                 //if we cant, go back to stage one.
                 avoidStage = 1;
             }
+        }
+    }
+    /// <summary>
+    /// Chases the target
+    /// </summary>
+    void DoChase(Transform target)
+    {
+        motor.RotateTowards(target.position, data.rotateSpeed);
+        //check to see if we can move in that direction
+        if (CanMove(data.moveSpeed))
+        {
+            //move in that direction
+            motor.Move(data.moveSpeed);
+        }
+        else
+        {
+            //start avoiding
+            avoidStage = 1;
         }
     }
 }

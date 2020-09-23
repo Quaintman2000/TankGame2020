@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: -8153919425218771210}
   - component: {fileID: -6709785650495238031}
   - component: {fileID: 5512175387365178436}
+  - component: {fileID: -4681038468747459068}
   m_Layer: 0
   m_Name: PlayerTank
   m_TagString: Player
@@ -329,7 +330,7 @@ MonoBehaviour:
   pointsForKill: 10
   fireRate: 1
   deathSound: {fileID: 8300000, guid: e4cc5eed902a1ef4cb3a76d5aa8a71f8, type: 3}
-  firePower: 500
+  firePower: 1200
 --- !u!114 &5307086188310118198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +440,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noiseRadius: 0
   closeEnough: 20
+--- !u!114 &-4681038468747459068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4420416040735556808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f69881c31f472804eb4de004ec45d9e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fieldOfView: 60
+  inSights: 10
 --- !u!1 &5312827000658724409
 GameObject:
   m_ObjectHideFlags: 0

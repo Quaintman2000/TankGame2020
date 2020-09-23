@@ -18,6 +18,7 @@ MonoBehaviour:
   waypoints: []
   closeEnough: 1
   currentWaypoint: 0
+  fleeTime: 0
   defualtInvestigateTimer: 0
   stateEnterTime: 0
   avoidStage: 0
@@ -48,6 +49,11 @@ PrefabInstance:
         type: 3}
       propertyPath: fleeTime
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243571602035387652, guid: ccef5f62860653547bbb8a19f72f3a22,
+        type: 3}
+      propertyPath: firePower
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7475427074645942987, guid: ccef5f62860653547bbb8a19f72f3a22,
         type: 3}

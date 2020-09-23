@@ -13,7 +13,7 @@ public class CowardlyFSMController : MonoBehaviour
     public Material sniperColor;
     public enum AIState
     {
-        Patrol, Charge, Shoot, Investigate
+        Patrol, Charge, Shoot, Investigate, flee
     };
     public AIState currentAIState;
     public AIState previousAIState;
@@ -21,6 +21,8 @@ public class CowardlyFSMController : MonoBehaviour
     public List<Transform> waypoints = new List<Transform>();
     public float closeEnough = 1.0f;
     public int currentWaypoint = 0;
+    public float fleeTime;
+    private float fleeTimer;
     public float defualtInvestigateTimer;
     private float investigateTimer;
     public float stateEnterTime;
@@ -58,13 +60,6 @@ public class CowardlyFSMController : MonoBehaviour
     public float timerDelay = 1.0f;
     private float lastEventTime;
 
-    private Transform visualsObject;
-    private Transform body;
-    private Transform cannon;
-    private GameObject bodyBase;
-    private GameObject barrel;
-    private GameObject shell;
-
     public float firingRange;
     // Start is called before the first frame update
     void Start()
@@ -88,22 +83,79 @@ public class CowardlyFSMController : MonoBehaviour
     {
         //cowardly FSM
         //if there is a player 
-        if (GameManager.Instance.playerOneData != null )
+        if (GameManager.Instance.playerOneData != null)
         {
             playerOneTransform = GameManager.Instance.playerOneData.transform;
+
             //check to see if you can see the player
-            if (vision.CanSee(playerOneTransform.gameObject) )
+            if (vision.CanSee(playerOneTransform.gameObject))
             {
-               
-                    currentTarget = playerOneTransform;
-                
-               
+                currentTarget = playerOneTransform;
+
+                //check if the player is facing the AI
+                if (currentTarget.gameObject.GetComponent<Vision>().CanSee(this.gameObject))
+                {
+                    //flee
+                    ChangeState(AIState.flee);
+                }
+                else
+                {
+                    //charge
+                    currentAIState = AIState.Charge;
+
+                    if (Vector3.Distance(this.transform.position, currentTarget.position) < firingRange)
+                    {
+                        ChangeState(AIState.Shoot);
+                    }
+                }
             }
 
-            else if (hearing.CanHear(playerOneTransform.gameObject))
+            else if (hearing.CanHear(playerOneTransform.gameObject) )
             {
-               currentTarget = playerOneTransform;
-               //enter investigate state;
+                currentTarget = playerOneTransform;
+                //enter investigate state;
+                currentAIState = AIState.Investigate;
+            }
+        }
+        //if not
+        else
+        {
+            //clear target
+            currentTarget = null;
+            //continue patroling
+            ChangeState(AIState.Patrol);
+        }
+        if (GameManager.Instance.playerTwoData != null)
+        {
+            playerOneTransform = GameManager.Instance.playerOneData.transform;
+
+            //check to see if you can see the player
+            if (vision.CanSee(playerTwoTransform.gameObject) )
+            {
+                currentTarget = playerTwoTransform;
+
+                //check if the player is facing the AI
+                if (currentTarget.gameObject.GetComponent<Vision>().CanSee(this.gameObject))
+                {
+                    //flee
+                    ChangeState(AIState.flee);
+                }
+                else
+                {
+                    //charge
+                    currentAIState = AIState.Charge;
+
+                    if (Vector3.Distance(this.transform.position, currentTarget.position) < firingRange)
+                    {
+                        ChangeState(AIState.Shoot);
+                    }
+                }
+            }
+
+            else if (hearing.CanHear(playerOneTransform.gameObject) && currentAIState != AIState.flee)
+            {
+                currentTarget = playerOneTransform;
+                //enter investigate state;
                 currentAIState = AIState.Investigate;
             }
         }
@@ -153,6 +205,23 @@ public class CowardlyFSMController : MonoBehaviour
                 //and shoot
                 IntervalShoot();
                 break;
+            case AIState.flee:
+                // do flee stuff
+                if (fleeTimer > 0)
+                {
+                    fleeTimer -= Time.deltaTime;
+                }
+                else if (currentTarget.gameObject.GetComponent<Vision>().CanSee(this.gameObject))
+                {
+                    fleeTimer = fleeTime;
+                }
+                else
+                {
+                    ChangeState(previousAIState);
+                }
+                DoRetreat();
+
+                break;
 
         }
     }
@@ -182,7 +251,7 @@ public class CowardlyFSMController : MonoBehaviour
         {
             motor.Move(data.moveSpeed);
         }
-        if (Vector3.SqrMagnitude(waypoints[currentWaypoint].position - tf.position) < (closeEnough * closeEnough))
+        if (Vector3.SqrMagnitude(waypoints[currentWaypoint].position - tf.position) < (closeEnough))
         {
             if (loopType == LoopType.Stop)
             {
@@ -306,6 +375,37 @@ public class CowardlyFSMController : MonoBehaviour
                 //if we cant, go back to stage one.
                 avoidStage = 1;
             }
+        }
+    }
+    private void DoRetreat()
+    {
+        if (avoidStage != 0)
+        {
+            DoAvoidance();
+        }
+        else
+        {
+            DoFlee(currentTarget);
+        }
+    }
+    /// <summary>
+    /// flees from target
+    /// </summary>
+    void DoFlee(Transform target)
+    {
+        Vector3 vectorToTarget = target.position - tf.position;
+        Vector3 awayFromTarget = -vectorToTarget;
+
+        awayFromTarget.Normalize();
+        Vector3 fleePosition = awayFromTarget + tf.position;
+        motor.RotateTowards(fleePosition, data.rotateSpeed);
+        if (CanMove(data.moveSpeed))
+        {
+            motor.Move(data.moveSpeed);
+        }
+        else
+        {
+            avoidStage = 1;
         }
     }
 }
