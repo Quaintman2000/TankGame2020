@@ -106,7 +106,9 @@ public class GameManager : Singleton<GameManager>
         }
       
     }
-
+    /// <summary>
+    /// handles enemy spawning
+    /// </summary>
     private void EnemySpawnHandler()
     {
         //check the number of enemies in the world
@@ -123,7 +125,9 @@ public class GameManager : Singleton<GameManager>
 
         }
     }
-
+    /// <summary>
+    /// handles player spawning
+    /// </summary>
     private void PlayerSpawnHandler()
     {
         //if there is spawns to be spawned in

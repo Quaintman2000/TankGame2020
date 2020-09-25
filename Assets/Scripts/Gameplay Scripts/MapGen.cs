@@ -23,17 +23,28 @@ public class MapGen : MonoBehaviour
 
     public MapType mapType = MapType.Random;
 
+    /// <summary>
+    /// converts a date into an integer
+    /// </summary>
+    /// <param name="dateToUse"></param>
+    /// <returns></returns>
     public int DateToInt(DateTime dateToUse)
     {
         return dateToUse.Year + dateToUse.Day + 
             dateToUse.Hour + dateToUse.Minute + 
             dateToUse.Second + dateToUse.Millisecond;
     }
+    /// <summary>
+    /// randomly chooses which room to gen
+    /// </summary>
+    /// <returns></returns>
     public GameObject RandomRoomPrefab()
     {
         return gridPrefabs[UnityEngine.Random.Range(0, gridPrefabs.Length)];
     }
-
+    /// <summary>
+    /// gens the grid
+    /// </summary>
     public void GenerateGrid()
     {
         //UnityEngine.Random.seed = mapSeed;

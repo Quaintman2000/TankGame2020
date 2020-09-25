@@ -81,29 +81,51 @@ public class NeutralFSMController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if there is a player one
-        if(GameManager.Instance.playerOneData != null)
+        //if there is a player 
+        if(GameManager.Instance.playerOneData != null || GameManager.Instance.playerTwoData != null)
         {
-            //add it to the transform
-            playerOneTransform = GameManager.Instance.playerOneData.GetComponent<Transform>();
-
-            if(vision.CanSee(playerOneTransform.gameObject) && Vector3.Distance(this.transform.position, currentTarget.position) < firingRange)
+            if (GameManager.Instance.playerOneData != null)
             {
-                playerOneTransform = currentTarget;
+                //add it to the transform
+                playerOneTransform = GameManager.Instance.playerOneData.GetComponent<Transform>();
+            }
+            if(GameManager.Instance.playerTwoData != null)
+            {
+                // add it to the transform
+                playerTwoTransform = GameManager.Instance.playerTwoData.GetComponent<Transform>();
+            }
 
+            if(vision.CanSee(playerOneTransform.gameObject) && Vector3.Distance(this.transform.position, playerOneTransform.position) < firingRange)
+            {
+                //set player one as the target
+                playerOneTransform = currentTarget;
+                //shoot
+                ChangeState(AIState.Shoot);
+            }
+            if (vision.CanSee(playerTwoTransform.gameObject) && Vector3.Distance(this.transform.position, playerTwoTransform.position) < firingRange)
+            {
+                //set player one as the target
+                playerTwoTransform = currentTarget;
+                //shoot
                 ChangeState(AIState.Shoot);
             }
             else
             {
+                //set target = null
                 currentTarget = null;
+                //patrol
                 ChangeState(AIState.Patrol);
             }
         }
         else
         {
+            //set player = null
             playerOneTransform = null;
+            playerTwoTransform = null;
+            //patrol
             ChangeState(AIState.Patrol);
         }
+        //handle stats
         AIStateHandler();
     }
     private void AIStateHandler()

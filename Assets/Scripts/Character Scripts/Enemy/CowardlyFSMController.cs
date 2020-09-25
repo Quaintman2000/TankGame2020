@@ -21,8 +21,7 @@ public class CowardlyFSMController : MonoBehaviour
     public List<Transform> waypoints = new List<Transform>();
     public float closeEnough = 1.0f;
     public int currentWaypoint = 0;
-    public float fleeTime;
-    private float fleeTimer;
+
     public float defualtInvestigateTimer;
     private float investigateTimer;
     public float stateEnterTime;
