@@ -27,7 +27,7 @@ MonoBehaviour:
   playerTwoTransform: {fileID: 0}
   loopType: 1
   timerDelay: 1
-  firingRange: 0
+  firingRange: 10
 --- !u!1001 &6263221252399306439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35,6 +35,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8997327973275179657, guid: ccef5f62860653547bbb8a19f72f3a22,
+        type: 3}
+      propertyPath: hearingDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4231707606647361313, guid: ccef5f62860653547bbb8a19f72f3a22,
         type: 3}
       propertyPath: waypoints.Array.size

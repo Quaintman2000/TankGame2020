@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6871b6fc5fb812e49872c32a71882309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hearingDistance: 20
+  hearingDistance: 0
 --- !u!1 &8873966482075980168
 GameObject:
   m_ObjectHideFlags: 0

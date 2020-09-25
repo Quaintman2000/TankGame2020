@@ -131,7 +131,7 @@ public class CowardlyFSMController : MonoBehaviour
                     currentTarget = playerTwoTransform;
 
                     //check if the player is facing the AI
-                    if (currentTarget.gameObject.GetComponent<Vision>().CanSee(this.gameObject))
+                    if (currentTarget.gameObject.GetComponent<Vision>().CanSee(this.gameObject) )
                     {
                         //flee
                         ChangeState(AIState.flee);
@@ -212,20 +212,14 @@ public class CowardlyFSMController : MonoBehaviour
                 break;
             case AIState.flee:
                 // do flee stuff
-                if (fleeTimer > 0)
+                if (currentTarget.gameObject.GetComponent<Vision>().CanSee(this.gameObject))
                 {
-                    fleeTimer -= Time.deltaTime;
-                }
-                else if (currentTarget.gameObject.GetComponent<Vision>().CanSee(this.gameObject))
-                {
-                    fleeTimer = fleeTime;
+                    DoRetreat();
                 }
                 else
                 {
-                    ChangeState(previousAIState);
+                    ChangeState(AIState.Charge);
                 }
-                DoRetreat();
-
                 break;
 
         }
