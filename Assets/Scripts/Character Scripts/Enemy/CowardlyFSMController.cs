@@ -83,9 +83,17 @@ public class CowardlyFSMController : MonoBehaviour
     {
         //cowardly FSM
         //if there is a player 
-        if (GameManager.Instance.playerOneData != null)
+        if (GameManager.Instance.playerOneData != null || GameManager.Instance.playerTwoData != null)
         {
-            playerOneTransform = GameManager.Instance.playerOneData.transform;
+            if (GameManager.Instance.playerOneData != null)
+            {
+                playerOneTransform = GameManager.Instance.playerOneData.transform;
+            }
+            if (GameManager.Instance.playerTwoData != null)
+            {
+                playerTwoTransform = GameManager.Instance.playerTwoData.transform;
+            }
+            
 
             //check to see if you can see the player
             if (vision.CanSee(playerOneTransform.gameObject))
@@ -109,54 +117,50 @@ public class CowardlyFSMController : MonoBehaviour
                     }
                 }
             }
-
             else if (hearing.CanHear(playerOneTransform.gameObject) )
             {
                 currentTarget = playerOneTransform;
                 //enter investigate state;
                 currentAIState = AIState.Investigate;
             }
-        }
-        //if not
-        else
-        {
-            //clear target
-            currentTarget = null;
-            //continue patroling
-            ChangeState(AIState.Patrol);
-        }
-        if (GameManager.Instance.playerTwoData != null)
-        {
-            playerOneTransform = GameManager.Instance.playerOneData.transform;
-
-            //check to see if you can see the player
-            if (vision.CanSee(playerTwoTransform.gameObject) )
+            else if (GameManager.Instance.playerTwoData != null)
             {
-                currentTarget = playerTwoTransform;
-
-                //check if the player is facing the AI
-                if (currentTarget.gameObject.GetComponent<Vision>().CanSee(this.gameObject))
+                //check to see if you can see the player
+                if (vision.CanSee(playerTwoTransform.gameObject))
                 {
-                    //flee
-                    ChangeState(AIState.flee);
-                }
-                else
-                {
-                    //charge
-                    currentAIState = AIState.Charge;
+                    currentTarget = playerTwoTransform;
 
-                    if (Vector3.Distance(this.transform.position, currentTarget.position) < firingRange)
+                    //check if the player is facing the AI
+                    if (currentTarget.gameObject.GetComponent<Vision>().CanSee(this.gameObject))
                     {
-                        ChangeState(AIState.Shoot);
+                        //flee
+                        ChangeState(AIState.flee);
+                    }
+                    else
+                    {
+                        //charge
+                        currentAIState = AIState.Charge;
+
+                        if (Vector3.Distance(this.transform.position, currentTarget.position) < firingRange)
+                        {
+                            ChangeState(AIState.Shoot);
+                        }
                     }
                 }
-            }
-
-            else if (hearing.CanHear(playerOneTransform.gameObject) && currentAIState != AIState.flee)
-            {
-                currentTarget = playerOneTransform;
-                //enter investigate state;
-                currentAIState = AIState.Investigate;
+                else if (hearing.CanHear(playerTwoTransform.gameObject))
+                {
+                    currentTarget = playerOneTransform;
+                    //enter investigate state;
+                    currentAIState = AIState.Investigate;
+                }
+                //if not
+                else
+                {
+                    //clear target
+                    currentTarget = null;
+                    //continue patroling
+                    ChangeState(AIState.Patrol);
+                }
             }
         }
         //if not
@@ -167,6 +171,7 @@ public class CowardlyFSMController : MonoBehaviour
             //continue patroling
             ChangeState(AIState.Patrol);
         }
+      
         AIStateHandler();
     }
     private void AIStateHandler()

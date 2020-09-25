@@ -18,7 +18,7 @@ MonoBehaviour:
   waypoints: []
   closeEnough: 1
   currentWaypoint: 0
-  fleeTime: 0
+  fleeTime: 3
   defualtInvestigateTimer: 0
   stateEnterTime: 0
   avoidStage: 0

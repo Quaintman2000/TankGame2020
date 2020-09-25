@@ -149,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 170024269, guid: d92fe6a1fb9623640acf8bac19180c00, type: 3}
       propertyPath: enemyTankPrefabs.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 170024269, guid: d92fe6a1fb9623640acf8bac19180c00, type: 3}
       propertyPath: scoreDatas.Array.data[4].score
